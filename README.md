@@ -2,3 +2,4 @@
 Projeto para disciplina MC426
 
 Luiz Henrique Marques Gonçalves RA:183218
+Tomas Conti Loesch RA: 224991
