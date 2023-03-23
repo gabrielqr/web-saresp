@@ -1,6 +1,7 @@
 # web-saresp
 Projeto para disciplina MC426
 
+<<<<<<< HEAD
 Aplicação Web com Dados de Rendimento Escolar de Escolas do Estado de SP (SARESP)
 
 Todos os dados são disponibilizado publicamente na internet em diversos formatos:
@@ -9,3 +10,7 @@ Todos os dados são disponibilizado publicamente na internet em diversos formato
 * revistas eletrônicas - esses está em formato científico. Isto significa que não é tão inteligível aos não-estudiosos. 
 
 A ideia do projeto é democratizar e facilitar a visualização desses dados, seja para tomadas de decisões de coordenadores escolares (professores, coordenadores, diretores, secretários da educação, etc) mas também para o público em geral, como pais e mães de alunos para por exemplo selecionar uma escola. 
+=======
+Luiz Henrique Marques Gonçalves RA:183218
+Guilherme Gomes Gonçalves RA:170927
+>>>>>>> 4b212fe245e4b0c59a3126d0cc0c031d4f1bdc78
