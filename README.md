@@ -10,7 +10,3 @@ Todos os dados são disponibilizado publicamente na internet em diversos formato
 
 // A ideia do projeto é democratizar e facilitar a visualização desses dados, seja para tomadas de decisões de coordenadores escolares (professores, coordenadores, diretores, secretários da educação, etc) mas também para o público em geral, como pais e mães de alunos para por exemplo selecionar uma escola. 
 
-Luiz Henrique Marques Gonçalves RA:183218
-Tomas Conti Loesch RA: 224991
-Guilherme Gomes Gonçalves RA:170927
-
