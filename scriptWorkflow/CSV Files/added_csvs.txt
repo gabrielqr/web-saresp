@@ -1,5 +1,3 @@
 added_csvs.txt
 ensino.csv
-familia.csv
-profissoes.csv
 outro.csv
