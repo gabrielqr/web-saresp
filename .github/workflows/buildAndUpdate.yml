@@ -23,7 +23,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python script.py
+        run: python scriptWorkflow/script.py   
         
       - name: Check if there are any changes
         id: verify_diff
