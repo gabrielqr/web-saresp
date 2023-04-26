@@ -23,9 +23,15 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python scriptWorkflow/script.py
+        run: python script.py
+        
+      - name: Check if there are any changes
+        id: verify_diff
+        run: |
+          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
         
       - name: Push changes
+        if: steps.verify_diff.outputs.changed == 'true'
         run: |
           git config --global user.email "luizmg03@gmail.com"
           git config --global user.name "Luiz"
