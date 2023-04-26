@@ -4,10 +4,7 @@ import os
 import csv
 import firebase_admin
 from firebase_admin import firestore
-import pyrebase
 from firebase_admin import credentials
-import collections.abc
-from collections.abc import Mapping
 
 def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
     if not os.path.isfile(nome_do_arquivo_entrada):
@@ -42,31 +39,17 @@ def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
     df_com_medias[colunas_originais].to_csv(nome_do_arquivo_saida, index=False)
 
 # Nome do arquivo CSV que será importado (inicial) e o filenamefinal
-filename_inicial = "SARESP_escolas_2019.csv"
-filename = "dados_saresp_atualizado2019.csv"
+filename_inicial = "SARESP_escolas_teste.csv"
+filename = "dados_saresp_atualizado_teste.csv"
 
 #roda a funcao
 corrige_csv(filename_inicial, filename)
 
+# aqui comeca importacao to firebase
 # Inicialize o SDK do Firebase com suas credenciais
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
-#Configura API
-#talvez nao precise, testando
-"""const firebaseConfig = {
-  apiKey: "AIzaSyCy5Pa_k7SaCooNjkLJWG_c0bg07pHS8FQ",
-  authDomain: "saresp-web.firebaseapp.com",
-  projectId: "saresp-web",
-  storageBucket: "saresp-web.appspot.com",
-  messagingSenderId: "1045309326364",
-  appId: "1:1045309326364:web:b9ececf619ff421fbd8bd9"
-};
-
-#inicia firebase database
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()"""
 
 # abre o arquivo CSV e guarda em csvreader
 with open(filename, 'r') as csvfile:
@@ -79,12 +62,11 @@ with open(filename, 'r') as csvfile:
     for row in csvreader:
         data = {
             "CodRMet": row[0],
-            "CODESC": row[1],
             "NOMESC": row[2],
             "SERIE_ANO": row[3],
             "medprof": row[4]
-        }        
+        }
         # envia o data de cada coluna para o servidor firebase
-        db.child("Escolas").push(data)
+        db.collection("Escolas").document(row[1]).set(data)
 #debug
 print("Importação concluída com sucesso para o Firebase!")
