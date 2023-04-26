@@ -4,7 +4,6 @@ import os
 def corrige_csv(nome_do_arquivo_entrada):
     print('O arquivo ' + nome_do_arquivo_entrada+ ' foi upado.')
 
-#print(os.listdir())
 csv_files = os.listdir('scriptWorkflow/CSV Files')
 
 with open('scriptWorkflow/CSV Files/added_csvs.txt') as f:
