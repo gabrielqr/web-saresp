@@ -1,3 +1,2 @@
 added_csvs.txt
 ensino.csv
-outro.csv
