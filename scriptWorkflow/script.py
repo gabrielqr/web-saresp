@@ -6,7 +6,7 @@ from firebase_admin import firestore
 from firebase_admin import credentials
 
 def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
-    if not os.path.isfile(nome_do_arquivo_entrada):
+    if not os.path.isfile('scriptWorkflow/'+nome_do_arquivo_entrada):
         raise FileNotFoundError(f'O arquivo {nome_do_arquivo_entrada} não existe.')
     
 #le arquivo
