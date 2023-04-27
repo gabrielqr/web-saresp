@@ -1,4 +1,3 @@
-import csv
 import pandas as pd
 import os
 import csv
@@ -11,7 +10,7 @@ def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
         raise FileNotFoundError(f'O arquivo {nome_do_arquivo_entrada} não existe.')
     
 #le arquivo
-    df = pd.read_csv(nome_do_arquivo_entrada, delimiter=';',decimal=',')
+    df = pd.read_csv('\CSV Files\' nome_do_arquivo_entrada, delimiter=';',decimal=',')
 
 # checa duplicados em 'NOMESC' e 'SERIE_ANO' oa mesmo tempo 
     duplicatas = df[df.duplicated(['NOMESC', 'SERIE_ANO'], keep=False)]
@@ -39,8 +38,8 @@ def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
     df_com_medias[colunas_originais].to_csv(nome_do_arquivo_saida, index=False)
 
 # Nome do arquivo CSV que será importado (inicial) e o filenamefinal
-filename_inicial = "SARESP_escolas_teste.csv"
-filename = "dados_saresp_atualizado_teste.csv"
+filename_inicial = "SARESP_escolas_2019.csv"
+filename = "SARESP_escolas_2019_atualizado.csv"
 
 #roda a funcao
 corrige_csv(filename_inicial, filename)
