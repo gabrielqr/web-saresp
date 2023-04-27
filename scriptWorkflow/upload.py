@@ -10,7 +10,7 @@ def corrige_csv(nome_do_arquivo_entrada, nome_do_arquivo_saida):
         raise FileNotFoundError(f'O arquivo {nome_do_arquivo_entrada} não existe.')
     
 #le arquivo
-    df = pd.read_csv('\CSV Files\' nome_do_arquivo_entrada, delimiter=';',decimal=',')
+    df = pd.read_csv('CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',')
 
 # checa duplicados em 'NOMESC' e 'SERIE_ANO' oa mesmo tempo 
     duplicatas = df[df.duplicated(['NOMESC', 'SERIE_ANO'], keep=False)]
