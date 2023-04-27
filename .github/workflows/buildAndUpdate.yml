@@ -18,8 +18,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Install Pandas
-        run: pip install pandas
+      - name: Install Pandas & firebase-admin
+        run: |
+          pip install pandas
+          pip install firebase-admin
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
