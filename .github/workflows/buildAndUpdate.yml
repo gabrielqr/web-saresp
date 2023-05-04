@@ -22,11 +22,12 @@ jobs:
         run: |
           pip install pandas
           pip install firebase-admin
-          export GOOGLE_APPLICATION_CREDENTIALS="web-saresp/.github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python scriptWorkflow/script.py   
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS="web-saresp/.github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
+          python scriptWorkflow/script.py   
         
       - name: Check if there are any changes
         id: verify_diff
