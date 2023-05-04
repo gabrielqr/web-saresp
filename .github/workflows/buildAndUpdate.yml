@@ -25,7 +25,7 @@ jobs:
       
       - name: Define Env Variable
         env: 
-          GOOGLE_APPLICATION_CREDENTIALS: "web-saresp/.github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
+          GOOGLE_APPLICATION_CREDENTIALS: "./web-saresp/.github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
