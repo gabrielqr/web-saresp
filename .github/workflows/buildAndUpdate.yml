@@ -26,7 +26,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          export GOOGLE_APPLICATION_CREDENTIALS="web-saresp/.github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
+          export GOOGLE_APPLICATION_CREDENTIALS=".github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
           python scriptWorkflow/script.py   
         
       - name: Check if there are any changes
