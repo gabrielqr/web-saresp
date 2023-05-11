@@ -18,14 +18,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Install Pandas & firebase-admin
+      - name: Install Pandas & firebase-admin & add google_credential
         run: |
           pip install pandas
           pip install firebase-admin
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: python scriptWorkflow/script.py   
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS=".github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
+          python scriptWorkflow/script.py   
         
       - name: Check if there are any changes
         id: verify_diff

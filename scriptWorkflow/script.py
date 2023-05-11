@@ -46,8 +46,7 @@ def upload_csv(filename_inicial):
 
     # aqui comeca importacao to firebase
     # Inicialize o SDK do Firebase com suas credenciais
-    cred = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(cred)
+    firebase_admin.initialize_app()
     db = firestore.client()
 
     # abre o arquivo CSV e guarda em csvreader

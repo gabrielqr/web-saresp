@@ -46,7 +46,8 @@ corrige_csv(filename_inicial, filename)
 
 # aqui comeca importacao to firebase
 # Inicialize o SDK do Firebase com suas credenciais
-cred = credentials.ApplicationDefault()
+#cred = credentials.ApplicationDefault()
+cred = credentials.RefreshToken('/saresp-web-firebase-adminsdk-q55zm-867836c94b.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
