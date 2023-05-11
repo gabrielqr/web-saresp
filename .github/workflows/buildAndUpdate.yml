@@ -43,4 +43,4 @@ jobs:
           git push
           
       - name: Testing
-        run: python scriptWorkflow/teste_upload.csv.py   
+        run: python scriptWorkflow/teste_upload_csv.py   
