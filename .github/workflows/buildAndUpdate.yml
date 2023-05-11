@@ -23,8 +23,7 @@ jobs:
           pip install pandas
           pip install firebase-admin
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Upload missing CSV in DB
         run: |
           export GOOGLE_APPLICATION_CREDENTIALS=".github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
           python scriptWorkflow/script.py   
@@ -42,3 +41,6 @@ jobs:
           git add .
           git commit -m "[Actions] updated csv database"
           git push
+          
+      - name: Testing
+        run: python scriptWorkflow/teste_upload.csv.py   
