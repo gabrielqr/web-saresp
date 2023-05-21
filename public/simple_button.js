@@ -5,6 +5,7 @@ import {
   getFirestore,
   orderBy,
   query,
+  where,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -22,6 +23,12 @@ async function getSchoolsRanked() {
   const schoolsRef = collection(db, "Escolas");
   const schoolsRankingQuery = query(schoolsRef, orderBy("medprof", "desc"));
   return await getDocs(schoolsRankingQuery);
+}
+
+async function getSchoolsBySearchTerm(searchTerm) {
+  const schoolsRef = collection(db, "Escolas");
+  const schoolsSearchQuery = query(schoolsRef, where("NOMESC", "==", searchTerm));
+  return await getDocs(schoolsSearchQuery);
 }
 
 function createCell(row, content, cellTag = "td") {
@@ -65,11 +72,9 @@ function createTable(tableData) {
   return table;
 }
 
-
-
-const el = document.getElementById("rankings");
-if (el) {
-  el.addEventListener("click", async () => {
+const rankingController = document.getElementById("rankings");
+if (rankingController) {
+  rankingController.addEventListener("click", async () => {
     console.log("Botão 'Rankings' clicado");
     let schoolsRanking = await getSchoolsRanked();
     
@@ -82,4 +87,39 @@ if (el) {
     // Redirecione para a nova página "ranking.html"
     window.location.href = "ranking.html";
   });
+}
+
+const searchController = document.getElementById("search");
+const searchInput = document.querySelector(".search");
+
+if (searchController && searchInput) {
+  searchController.addEventListener("click", async () => {
+    performSearch();
+  });
+
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      performSearch();
+    }
+  });
+}
+
+async function performSearch() {
+  const searchTerm = searchInput.value.trim();
+
+  if (searchTerm !== "") {
+    console.log("Botão 'Search' clicado");
+    const searchResults = await getSchoolsBySearchTerm(searchTerm);
+    let table = createTable(searchResults);
+
+    console.log(table);
+  
+    // Armazene os resultados no armazenamento local ou em uma variável global
+    localStorage.setItem("searchingTable", table.outerHTML);
+    
+    // Redirecione para a nova página "searching.html"
+    window.location.href = "searching.html";
+
+  }
 }

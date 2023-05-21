@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Resultado da Pesquisa</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        background-color: #0072C6;
+        color: #fff;
+        padding-bottom: 25px;
+      }
+      
+      .table-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Biblioteca do Firebase para JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js" type="module"></script>
+    <!-- Biblioteca do Firebase para os serviços -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js" type="module"></script>
+    <!-- Script para a aplicação -->
+    <script src="simple_button.js" type="module"></script>
+
+    <div class="header">
+      <h1>RESULTADOS DA PESQUISA</h1>
+    </div>
+    
+    <div class="table-container">
+      <div id="searchingTable"></div>
+    </div>
+
+    <script>
+      // Recupere os resultados do armazenamento local ou da variável global
+      var searchingTable = localStorage.getItem("searchingTable");
+      // var rankingTable = window.rankingTable; (se estiver usando uma variável global)
+
+      // Exiba a tabela no elemento com o ID "rankingTable"
+      document.getElementById("searchingTable").innerHTML = searchingTable;
+    </script>
+    
+  </body>
+</html>
