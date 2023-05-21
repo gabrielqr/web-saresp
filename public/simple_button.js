@@ -43,7 +43,7 @@ function createTableHeader(table, headers) {
 }
 
 function createTable(tableData) {
-  var table = document.getElementById("rankingTable");
+  var table = document.createElement("table");
 
   createTableHeader(table, ["Nome", "Série/Ano", "Média"]);
 
@@ -61,14 +61,25 @@ function createTable(tableData) {
   });
 
   table.appendChild(tableBody);
+
+  return table;
 }
 
-document.getElementById("sobreNos").addEventListener("click", () => {
-  console.log("Botão 'Sobre nós' clicado");
-});
 
-document.getElementById("rankings").addEventListener("click", async () => {
-  console.log("Botão 'Rankings' clicado");
-  let schoolsRanking = await getSchoolsRanked();
-  createTable(schoolsRanking);
-});
+
+const el = document.getElementById("rankings");
+if (el) {
+  el.addEventListener("click", async () => {
+    console.log("Botão 'Rankings' clicado");
+    let schoolsRanking = await getSchoolsRanked();
+    
+    // Crie a tabela
+    let table = createTable(schoolsRanking);
+  
+    // Armazene os resultados no armazenamento local ou em uma variável global
+    localStorage.setItem("rankingTable", table.outerHTML);
+    
+    // Redirecione para a nova página "ranking.html"
+    window.location.href = "ranking.html";
+  });
+}
