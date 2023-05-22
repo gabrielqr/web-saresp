@@ -6,7 +6,7 @@ require('jsdom-global')();
 
 describe("simple_button.html", () => {
     beforeEach((done) => {
-        JSDOM.fromFile("front_end/simple_button.html")
+        JSDOM.fromFile("public/simple_button.html")
         .then((dom) => {
             global.document = dom.window.document
         })
