@@ -34,7 +34,7 @@ describe('Ranking.html', () => {
       expect(headers[2]).to.have.text('Média');
     });
 
-    it('should have a table with at least one row of data', () => {
+    it('should have a table with at least two row of data', () => {
       const rows = document.querySelectorAll('tr');
       expect(rows.length).to.be.at.least(2); // header included
     });
