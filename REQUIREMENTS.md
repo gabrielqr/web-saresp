@@ -1,3 +1,5 @@
+# Benchmarking
+
 ## App Clique Escola
 -  Funcionalidades de interesse
 >-  Apresentação de dados institucionais de escolas por gráficos e tabelas
@@ -14,12 +16,17 @@
 
 
 <img src="requirements_images\appselecao.jfif" height="400" style="align: center;">
+<br /> <br /> 
+
+
 
 
 >-  Apresentação de dados gerais por localidade
 
 
 <img src="requirements_images\appgeral.jfif" height="400" style="align: center;">
+<br /> <br /> 
+
 
 
 - Pontos positivos
