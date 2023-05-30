@@ -16,7 +16,7 @@
 
 
 <img src="requirements_images\appselecao.jfif" height="400" style="align: center;">
-<br /> <br /> 
+<br />
 
 
 
@@ -25,7 +25,7 @@
 
 
 <img src="requirements_images\appgeral.jfif" height="400" style="align: center;">
-<br /> <br /> 
+<br />
 
 
 
