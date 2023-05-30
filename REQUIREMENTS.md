@@ -3,7 +3,7 @@
 ## App Clique Escola
 ###  Funcionalidades de interesse
 
-1. Apresentação de dados institucionais de escolas por gráficos e tabelas_
+1. Apresentação de dados institucionais de escolas por gráficos e tabelas
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Como apresentado nos _Screenshots_ abaixo, a aplicação apresenta os dados das escolas organizados em gráficos e tabelas, de forma que, visualmente, a compreensão dos dados é facilitada. 
