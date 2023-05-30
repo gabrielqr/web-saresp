@@ -1,12 +1,12 @@
 # Benchmarking
 
 ## App Clique Escola
--  Funcionalidades de interesse
->-  Apresentação de dados institucionais de escolas por gráficos e tabelas
+###  Funcionalidades de interesse
+
+1. Apresentação de dados institucionais de escolas por gráficos e tabelas_
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Como apresentado nos _Screenshots_ abaixo, a aplicação apresenta os dados das escolas organizados em gráficos e tabelas, de forma que, visualmente, a compreensão dos dados é facilitada. 
-
 
 <p >
 <img src="requirements_images\appgrafico1.jfif" height="400">
@@ -19,7 +19,7 @@ São utilizados diferentes tipos de apresentações gráficas, adequadas aos dif
 
 <br /> 
 
->-  Seleção de escolas a partir de filtros (Estado, Município ou Nome)
+2.  Seleção de escolas a partir de filtros (Estado, Município ou Nome)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para selecionar a escola para a qual se deseja analisar os dados descritos no item anterior, a aplicação permite que as escolas sejam buscadas por um sistema de filtros que reduz a lista de escolas, apresentando somente as escolas do estado e/ou município indicado. Ainda, é possível refinar a busca selecionando o tipo de instituição ou digitando, parcialmente ou integralmente, o nome da escola no campo destinado.
 
@@ -29,24 +29,24 @@ São utilizados diferentes tipos de apresentações gráficas, adequadas aos dif
 
 <br />
 
->-  Apresentação de dados gerais por localidade
+3.  Apresentação de dados gerais por localidade
 
 Na aba _Redes de Ensino_ é possível visualizar os dados gerais médios de todo o país ou de determinado estado ou município. O dado que deseja ser visualizado pode ser escolhido por meio de um menu suspenso com os atributos disponíveis.
 
 <img src="requirements_images\appgeral.jfif" height="400">
 <br />
 
-- Pontos positivos
->- Gráficos comparativos das escolas com as médias estaduais e nacionais.
+### Pontos positivos
+- Gráficos comparativos das escolas com as médias estaduais e nacionais.
 
->- Gráficos comparativos com outros anos.
+- Gráficos comparativos com outros anos.
 
->- sistema de filtros eficiente.
+- sistema de filtros eficiente.
 
-- Pontos negativos
->- Frequentemente, há grande tempo de espera para carregamento dos dados e transição de páginas.
+### Pontos negativos
+- Frequentemente, há grande tempo de espera para carregamento dos dados e transição de páginas.
 
->- Nos gráficos de linhas, não é possível ver exatamente qual o valor marcado pelos pontos.
+- Nos gráficos de linhas, não é possível ver exatamente qual o valor marcado pelos pontos.
 
->- Funcionalidade de "favoritar" restrita a usuários logados.
+- Funcionalidade de "favoritar" restrita a usuários logados.
 
