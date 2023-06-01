@@ -1,5 +1,7 @@
 # Benchmarking
 
+Foi realizado um processo de _Benchmarking_ com os sistemas e aplicações descritas e avaliados abaixo, os quais possuem contexto e funcionalidades semelhantes ao objetivo do nosso projeto. Essa análise serviu como embasamento para a elicitação dos requisitos, a partir dos quais foram construídos Épicos e Histórias, listados e desenvolvidos nas _Issues_.
+
 ## App Clique Escola
 ###  Funcionalidades de interesse
 
