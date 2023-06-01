@@ -50,3 +50,45 @@ Na aba _Redes de Ensino_ é possível visualizar os dados gerais médios de todo
 
 - Funcionalidade de "favoritar" restrita a usuários logados.
 
+
+
+## Site [SARESP](https://saresp.fde.sp.gov.br/ConsultaRede.aspx?opc=1&tipo=Rede+Estadual)
+
+### Funcionalidades de Interesse
+
+1.  Busca por nome da escola seus dados do ano selecionado.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+O site possui uma caixa de seleção para escolher um ano e ao lado um barra para escrever o nome da escola que deseja buscar as informações. Ao escrever um nome de escola incompleto e buscar, a pesquisa retorna escolas que possuem a palavra buscada. A busca retorna uma tabela com um documento pdf.
+
+<p >
+<img src="requirements_images\buscasaresp.JPG">
+<img src="requirements_images\buscasaresp1.JPG">
+</p>
+
+<br /> 
+
+2.  Apresentação de dados através de gráficos e tabelas.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+O pdf apresenta os dados de maneira simples, com a ajuda de gráficos e tabelas, deixando assim a visualização dos dados mais intuitiva.  A página inicial dos pdfs contém dados sobre a SARESP, como percentual de participação das escolas e alunos. As páginas seguintes mostram dados da escola em questão, como níveis de proficiência, notas em matérias como Língua Portuguesa, Matemática e Ciências da Natureza, utilizando tabelas e com classificações explicadas anteriormente no próprio pdf. No final existem gráficos e tabelas de comparação da escola em questão com ela mesma em anos anteriores, além de projetar uma meta.
+
+<p >
+<img src="requirements_images\Catabelasaresp.JPG" height="400">
+<img src="requirements_images\graficoadoniran.JPG" height="400">
+<img src="requirements_images\graficoadoniran1.JPG" height="400">
+</p>
+
+<br />
+
+### Pontos positivos:
+- Os gráficos comparativos das escolas entre os anos em que participaram da SARESP, para ver a evolução da escola com o passar do tempo.
+- Tabelas comparativas com as médias das escolas da região.
+- Busca dos dados das escolas por ano.
+
+### Pontos negativos:
+- Possui uma “Busca por escola” na página de busca que não funciona, a pesquisa retorna vazia.
+- A quantidade de dados apresentados, até mesmo dados repetidos, pode tornar um pouco confusa a experiência do usuário.
+- Alguns gráficos e tabelas possuem espaços vazios e que poderiam não estar ali. Nos gráficos comparativos, mostram dados do 5° EF, 9° EF e 3° EM, porém nem sempre existem dados de alguns desses, então nos gráficos apresentados fica apenas um espaço em branco.
+- Os gráficos ficam separados das tabelas, então alguns dados são apresentados em forma de tabela mais de uma vez para ajudar na leitura do gráfico, poluindo um pouco o documento e aumentando seu tamanho.
+
