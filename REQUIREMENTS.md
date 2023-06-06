@@ -94,3 +94,32 @@ O pdf apresenta os dados de maneira simples, com a ajuda de gráficos e tabelas,
 - Alguns gráficos e tabelas possuem espaços vazios e que poderiam não estar ali. Nos gráficos comparativos, mostram dados do 5° EF, 9° EF e 3° EM, porém nem sempre existem dados de alguns desses, então nos gráficos apresentados fica apenas um espaço em branco.
 - Os gráficos ficam separados das tabelas, então alguns dados são apresentados em forma de tabela mais de uma vez para ajudar na leitura do gráfico, poluindo um pouco o documento e aumentando seu tamanho.
 
+## [Raio-x das escolas](https://especiais.g1.globo.com/educacao/raio-x-das-escolas-do-brasil/)
+
+### Funcionalidades de Interesse
+
+1.  Filtros por cidade/estado/escola 
+
+Para encontrar escolas, é obrigatório dizer o estado e a cidade para buscar escolas. A partir disso, é possível ter uma lista com todas as escolas ou buscar diretamente a escola que você quer (e ela encontra nomes similares do que você está buscando). 
+
+<img src="requirements_images\filtro-estado-cidade.PNG" height="400">
+<img src="requirements_images\todas-escolas.PNG" height="400">
+
+2.  Gráficos que comparam uma escola com Cidade ou estado ou país
+
+Após encontrar uma escola, para visualizar os dados de uma escola é necessáiro comparar a escola com parâmetros que são: Cidade, estado ou país. E tais parâmetros variam de ENEM, IDEB, Índices de Educação, Línguas e Infraestrutura.
+
+<img src="requirements_images\exemplo-comparacao.PNG" height="400">
+
+### Pontos positivos: 
+- Site single-page, faz com que o usuário não precise dar muitos cliques para encontrar sua informação
+- Fácil encontrar escolas
+- Gráficos bem intuitivos e simples de se ler
+- Comparações escola x cidade/estado/país é um padrão interessante
+
+### Pontos negativos:
+- Não é possível visualizar apenas os dados de uma escola, é sempre um comparativo e dependendo pode ter muita informação
+- Alguns dados nunca estão presentes (como é o caso do ENEM) e mesmo assim o site mantém a opção para visualização dos dados.
+- Não é possível comparar escola x escola
+
+
