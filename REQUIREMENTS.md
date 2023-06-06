@@ -102,14 +102,14 @@ O pdf apresenta os dados de maneira simples, com a ajuda de gráficos e tabelas,
 
 Para encontrar escolas, é obrigatório dizer o estado e a cidade para buscar escolas. A partir disso, é possível ter uma lista com todas as escolas ou buscar diretamente a escola que você quer (e ela encontra nomes similares do que você está buscando). 
 
-<img src="requirements_images\filtro-estado-cidade.PNG" height="400">
-<img src="requirements_images\todas-escolas.PNG" height="400">
+<img src="requirements_images\filtro-estado-cidade.png" height="400">
+<img src="requirements_images\todas-escolas.png" height="400">
 
 2.  Gráficos que comparam uma escola com Cidade ou estado ou país
 
 Após encontrar uma escola, para visualizar os dados de uma escola é necessáiro comparar a escola com parâmetros que são: Cidade, estado ou país. E tais parâmetros variam de ENEM, IDEB, Índices de Educação, Línguas e Infraestrutura.
 
-<img src="requirements_images\exemplo-comparacao.PNG" height="400">
+<img src="requirements_images\exemplo-comparacao.png" height="400">
 
 ### Pontos positivos: 
 - Site single-page, faz com que o usuário não precise dar muitos cliques para encontrar sua informação
