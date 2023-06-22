@@ -1,0 +1,40 @@
+name: UploadNewCSVs
+
+# Controls when the workflow will run
+on: [push]
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Install Pandas & firebase-admin & add google_credential
+        run: |
+          pip install pandas
+          pip install firebase-admin
+
+      - name: Upload missing CSV in DB
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS=".github/workflows/saresp-web-firebase-adminsdk-q55zm-867836c94b.json"
+          python scriptWorkflow/script.py    
+          
+      - name: Install Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Testing
+        run: |
+          python scriptWorkflow/teste_upload_csv.py
+          npm test
