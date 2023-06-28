@@ -12,7 +12,7 @@ A ideia do projeto é democratizar e facilitar a visualização desses dados, se
 
 ## Descrição da Arquitetura (Avaliação 4.1)
 
-<img src="requirements_images\diagrama.png" height="350">
+<img src="requirements_images\diagrama.png" height="450">
 
 O estilo utilizado para a construção dessa arquitetura é baseada no Shared Repository. Como as funcionalidades do sistema são baseadas em manipulação e visualização de dados, a arquitetura consiste no conjunto de requisições da página Web ao Banco de Dados e atualização de informações ao mesmo Banco de dados pelo script acionado no GitHub Actions.
 
