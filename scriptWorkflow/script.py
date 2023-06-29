@@ -12,7 +12,7 @@ class Uploader:
             raise FileNotFoundError(f'O arquivo {nome_do_arquivo_entrada} não existe.')
         
     #le arquivo
-        df = pd.read_csv('scriptWorkflow/CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',')
+        df = pd.read_csv('scriptWorkflow/CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',', encoding='latin1')
     
     #pega o ano do nome_do_arquivo_entrada
         ano = ''.join(filter(str.isdigit, nome_do_arquivo_entrada))
