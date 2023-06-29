@@ -104,10 +104,14 @@
   <div class="container">
     <h2>Login</h2>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Usuário" required>
-      <input type="password" id="password" placeholder="Senha" required>
+      <input type="email" id="txtEmail" placeholder="Email" style="width: 453px;height: 20px;" required>
+      <input type="password" id="txtPassword" placeholder="Senha" autocomplete="on" required>
       <div id="my-signin2"></div>
-      <button type="submit">Entrar</button>
+      <button id="btnLogin" type="submit">Entrar</button>    
+      <div class="blank-line">
+        <hr>
+       </div>
+      <button id="btnSignup" type="submit" style="height: 30px;width: 100px;">Criar Conta</button>
     </form>
   </div>
 
@@ -124,19 +128,19 @@
 
     <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
+    // document.getElementById("loginForm").addEventListener("submit", function(event) {
+    //   event.preventDefault();
+    //   var username = document.getElementById("username").value;
+    //   var password = document.getElementById("password").value;
 
-      // Verificar se os campos estão preenchidos corretamente
-      if (username === "usuario" && password === "senha") {
-        alert("Login bem-sucedido!");
-        // Aqui você pode redirecionar para outra página ou executar alguma ação adicional
-      } else {
-        alert("Usuário ou senha inválidos. Tente novamente.");
-      }
-    });
+    //   // Verificar se os campos estão preenchidos corretamente
+    //   if (username === "usuario" && password === "senha") {
+    //     alert("Login bem-sucedido!");
+    //     // Aqui você pode redirecionar para outra página ou executar alguma ação adicional
+    //   } else {
+    //     alert("Usuário ou senha inválidos. Tente novamente.");
+    //   }
+    // });
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
     }

@@ -8,6 +8,14 @@ import {
   where,
   or,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
+import {
+  getAuth,
+  signInWithEmailandPassword,
+  onAuthStateChanged,
+  createUserWithEmailandPassword,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/9.19.0/firebase-auth.js"
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCy5Pa_k7SaCooNjkLJWG_c0bg07pHS8FQ",
@@ -238,3 +246,67 @@ if (homeController) {
     window.location.href = "index.html";
   });
 }
+
+const auth = getAuth(app);
+
+const provider = new GoogleAuthProvider();
+
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const userCredential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    // IdP data available using getAdditionalUserInfo(result)
+    // ...
+  });
+
+const loginEmailPassword = async () => {
+  const loginEmail = txtEmail.value;
+  const loginPassword = txtPassword.value;
+
+  await signInWithEmailandPassword(auth, loginEmail, loginPassword);
+
+  // try{
+  // const userCredential = await signInWithEmailandPassword(auth, loginEmail, loginPassword);
+  // console.log(userCredential.user);
+  // }
+  // catch(error){
+  //   console.log(error);
+  //   showLoginError(error);
+  // } 
+  // Esse try aqui é pra quando dar erro.
+
+}
+
+const createAccount = async () => {
+  const email = txtEmail.value;
+  const password = txtPassword.value;
+
+  await createUserWithEmailandPassword(auth, email, password);
+
+  // try{
+  // const userCredential = await createUserWithEmailandPassword(auth, loginEmail, loginPassword);
+  // console.log(userCredential.user);
+  // }
+  // catch(error){
+  //   console.log(error);
+  //   showLoginError(error);
+  // } 
+  // Esse try aqui é pra quando dar erro.
+}
+
+const monitorAuthState = async () => {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      console.log(user)
+      
+    }
+    else {
+      
+    }
+  })
+}
+
+monitorAuthState();
