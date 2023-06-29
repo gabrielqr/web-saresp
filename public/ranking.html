@@ -274,7 +274,7 @@
         }
 
         .pagination {
-          bottom: 0;
+          text-align: center;
         }
 
       </style>
@@ -300,7 +300,7 @@
         <img id="home"  class="logo-superior" alt="Logo do Site" src="img/logo.png"/>
         <div id="rankings" class="btn-ranking">Ranking Estadual</div>
         <div class="btn-login-container">
-          <div class="btn-login">Login</div>
+          <div id="login" class="btn-login">Login</div>
         </div>
         <div class="search-selector">
           <div id="selector" class="selector">
@@ -324,9 +324,9 @@
     
         <div class="table-container">
           <div id="rankingTable"></div>
+          <br/>
+          <div class="pagination" id="pagination"></div>
         </div>
-
-        <div class="pagination" id="pagination"></div>
     
         <script>
             // Recupere os resultados do armazenamento local ou da variável global
@@ -338,6 +338,8 @@
 
             // Converta a tabela em uma matriz de linhas
             var tableRows = rankingTable.split("<tr");
+
+            var tableheader = "<thead><tr><th>Nome</th><th>Ano</th><th>Região</th><th>Série/Ano</th><th>Média</th></tr></thead>"
 
             // Calcule o número total de páginas
             var totalPages = Math.ceil(tableRows.length / resultsPerPage);
@@ -353,7 +355,13 @@
             var currentPageRows = tableRows.slice(startIndex + 1, endIndex + 1);
 
             // Exiba a tabela no elemento com o ID "rankingTable"
-            document.getElementById("rankingTable").innerHTML = "<table><tbody><tr" + currentPageRows.join("<tr");
+
+            if (currentPage == 1){
+              document.getElementById("rankingTable").innerHTML = "<table><tbody><tr" + currentPageRows.join("<tr");
+            }
+            else {
+              document.getElementById("rankingTable").innerHTML = "<table>"+ tableheader +"<tbody><tr" + currentPageRows.join("<tr");
+            }
 
             // Exiba a paginação
             var pagination = "";

@@ -238,3 +238,13 @@ if (homeController) {
     window.location.href = "index.html";
   });
 }
+
+const loginController = document.getElementById("login");
+if (loginController) {
+  loginController.addEventListener("click", async () => {
+    console.log("Botão 'login' clicado");
+
+    // Redirecione para a nova página "index.html"
+    window.location.href = "login.html";
+  });
+}
