@@ -12,7 +12,10 @@ class Uploader:
             raise FileNotFoundError(f'O arquivo {nome_do_arquivo_entrada} não existe.')
         
     #le arquivo
-        df = pd.read_csv('scriptWorkflow/CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',')
+        df = pd.read_csv('scriptWorkflow/CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',', encoding='latin1')
+    
+    #pega o ano do nome_do_arquivo_entrada
+        ano = ''.join(filter(str.isdigit, nome_do_arquivo_entrada))
 
     # checa duplicados em 'NOMESC' e 'SERIE_ANO' oa mesmo tempo 
         duplicatas = df[df.duplicated(['NOMESC', 'SERIE_ANO'], keep=False)]
@@ -34,9 +37,12 @@ class Uploader:
         
     #trunca a partir da terceira casa decimal
         df_com_medias.loc[:, 'medprof'] = df_com_medias['medprof'].round(3)
+    
+    #adiciona o ano
+        df_com_medias['ano'] = ano
 
     #anota as colunas originais e traz as colunas originais no arquivo final
-        colunas_originais = ['CodRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof']
+        colunas_originais = ['codRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof', 'ano']
         df_com_medias[colunas_originais].to_csv(nome_do_arquivo_saida, index=False)
 
     def upload_csv(self, filename_inicial):
@@ -44,7 +50,7 @@ class Uploader:
         filename = filename_inicial[:-4] + '_atualizado.csv'
 
         #roda a funcao corrige_csv
-        corrige_csv(filename_inicial, filename)
+        self.corrige_csv(filename_inicial, filename)
 
         # aqui comeca importacao to firebase
         # Inicialize o SDK do Firebase com suas credenciais
@@ -61,11 +67,12 @@ class Uploader:
             # percorre as linhas e colunas
             for row in csvreader:
                 data = {
-                    "CodRMet": row[0],
+                    "codRMet": row[0],
                     "CODESC": row[1],
                     "NOMESC": row[2],
                     "SERIE_ANO": row[3],
-                    "medprof": row[4]
+                    "medprof": row[4],
+                    "ano": row[5]
                 }
                 # envia o data de cada coluna para o servidor firebase  
                 db.collection("Escolas").add(data)

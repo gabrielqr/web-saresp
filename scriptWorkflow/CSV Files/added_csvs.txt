@@ -4,3 +4,5 @@ profissoes.csv
 ensino.csv
 outro.csv
 SARESP_escolas_2019_teste.csv
+Proficiência_SARESP_2021_por_escola.csv
+SARESP_escolas_2018.csv
