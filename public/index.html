@@ -275,7 +275,7 @@
     <img id="home" class="logo-superior" alt="Logo do Site" src="img/logo.png" />
     <div id="rankings" class="btn-ranking">Ranking Estadual</div>
     <div class="btn-login-container">
-      <div class="btn-login">Login</div>
+      <div class="btn-login"onclick="redirectToLogin()">Login</div>
     </div>
     <div class="search-selector">
       <div id="selector" class="selector">
@@ -321,7 +321,11 @@
       <img class="mini-logo" style="left: 1234px" src="img/twitter.png" />
     </div>
   </div>
-
+  <script type="text/javascript">
+    function redirectToLogin() {
+      window.location.href = "login.html"; // Substitua "login" pela URL desejada
+    }
+  </script>
 </body>
 
 </html>
