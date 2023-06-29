@@ -39,7 +39,7 @@ class Uploader:
         df_com_medias.loc[:, 'medprof'] = df_com_medias['medprof'].round(3)
     
     #adiciona o ano
-        df_com_medias['ano'] = numero
+        df_com_medias['ano'] = ano
 
     #anota as colunas originais e traz as colunas originais no arquivo final
         colunas_originais = ['CodRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof']
@@ -50,7 +50,7 @@ class Uploader:
         filename = filename_inicial[:-4] + '_atualizado.csv'
 
         #roda a funcao corrige_csv
-        corrige_csv(filename_inicial, filename)
+        self.corrige_csv(filename_inicial, filename)
 
         # aqui comeca importacao to firebase
         # Inicialize o SDK do Firebase com suas credenciais
