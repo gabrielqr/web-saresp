@@ -42,7 +42,7 @@ class Uploader:
         df_com_medias['ano'] = ano
 
     #anota as colunas originais e traz as colunas originais no arquivo final
-        colunas_originais = ['codRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof']
+        colunas_originais = ['codRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof', 'ano']
         df_com_medias[colunas_originais].to_csv(nome_do_arquivo_saida, index=False)
 
     def upload_csv(self, filename_inicial):
