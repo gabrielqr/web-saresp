@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="google-signin-client_id" content="469850250369-7mj2pj8qc3thnapoomfa4vmbq932as7q.apps.googleusercontent.com">
     <meta charset="UTF-8">
     <title>Dados otimizados do SARESP</title>
   <style>
@@ -56,10 +57,10 @@
     }
 
     .container {
-      width: 300px;
+      width: 450px;
       margin: 100px auto;
       background-color: #fff;
-      padding: 20px;
+      padding: 10px;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
@@ -86,14 +87,26 @@
       border-radius: 3px;
       cursor: pointer;
     }
+
+    #my-signin2 {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #my-signin2 .abcRioButton {
+    background-color: #4F8C8D;
+  }
   </style>
 </head>
-<body>
+<body> 
   <div class="container">
     <h2>Login</h2>
     <form id="loginForm">
       <input type="text" id="username" placeholder="Usuário" required>
       <input type="password" id="password" placeholder="Senha" required>
+      <div id="my-signin2"></div>
       <button type="submit">Entrar</button>
     </form>
   </div>
@@ -107,6 +120,9 @@
         </div>
         </div>
 
+
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(event) {
       event.preventDefault();
@@ -121,6 +137,31 @@
         alert("Usuário ou senha inválidos. Tente novamente.");
       }
     });
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 250,
+        'height': 30,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+    function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
   </script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </body>
 </html>
