@@ -13,6 +13,9 @@ class Uploader:
         
     #le arquivo
         df = pd.read_csv('scriptWorkflow/CSV Files/'+ nome_do_arquivo_entrada, delimiter=';',decimal=',')
+    
+    #pega o ano do nome_do_arquivo_entrada
+        ano = ''.join(filter(str.isdigit, nome_do_arquivo_entrada))
 
     # checa duplicados em 'NOMESC' e 'SERIE_ANO' oa mesmo tempo 
         duplicatas = df[df.duplicated(['NOMESC', 'SERIE_ANO'], keep=False)]
@@ -34,6 +37,9 @@ class Uploader:
         
     #trunca a partir da terceira casa decimal
         df_com_medias.loc[:, 'medprof'] = df_com_medias['medprof'].round(3)
+    
+    #adiciona o ano
+        df_com_medias['ano'] = numero
 
     #anota as colunas originais e traz as colunas originais no arquivo final
         colunas_originais = ['CodRMet', 'CODESC', 'NOMESC', 'SERIE_ANO', 'medprof']
