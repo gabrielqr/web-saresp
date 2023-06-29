@@ -50,7 +50,7 @@
         }
         
         .search {
-          width: 360px;
+          width: 100%;
           height: 42px;
           left: 0px;
           top: 0px;
@@ -61,7 +61,7 @@
           border-top: 0.50px #1B4965 solid;
           border-right: 0.50px #1B4965 solid;
           border-bottom: 0.50px #1B4965 solid;
-          font-size: 18px;
+          font-size: 16px;
           font-weight: bold;
           font-family: Red Hat Display;
           word-wrap: break-word;
@@ -70,16 +70,70 @@
         }
 
         .search-container{
-          width: 360px;
+          width: 26%;
           height: 42px;
           left: 38%;
           top: 19px;
           position: absolute;
         }
+
+        .selector {
+          width: 100%;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          color: white;
+          font-size: 18px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 7px;
+          text-align: left;
+        }
+
+        .custom-dropdown {
+          position: relative;
+          display: inline-block;
+        }
+
+        .custom-dropdown select {
+          padding: 8px 16px;
+          font-size: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          appearance: none;
+          -webkit-appearance: none;
+          background-color: white;
+        }
+
+        .custom-dropdown select:focus {
+          outline: none;
+          border-color: #007bff;
+        }
+
+        .custom-dropdown::after {
+          content: '\25BE';
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          color: #777;
+          pointer-events: none;
+        }
+
+        .search-selector {
+          width: 15%;
+          height: 42px;
+          left: 24%;
+          top: 19px;
+          position: absolute;
+        }
   
         .btn-ranking {
-          width: 160px;
-          left: 950px;
+          width: 12%;
+          left: 70%;
           top: 4%;
           position: absolute;
           color: white;
@@ -94,6 +148,71 @@
         }
       
         .btn-ranking:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .btn-year-2019 {
+          width: 12%;
+          left: 30%;
+          top: 15%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+        }
+      
+        .btn-year-2019:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+        .btn-year-2021 {
+          width: 12%;
+          left: 45%;
+          top: 15%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+        }
+      
+        .btn-year-2021:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .btn-year-2022 {
+          width: 12%;
+          left: 60%;
+          top: 15%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+        }
+      
+        .btn-year-2022:hover {
           background-color: gray;
           color: #fff;
           cursor: pointer;
@@ -123,9 +242,9 @@
         }
         
         .btn-login-container {
-          width: 100px;
+          width: 10%;
           height: 42px;
-          left: 1156px;
+          left: 85%;
           top: 21px;
           position: absolute;
         }
@@ -149,16 +268,17 @@
         }
 
         .table-container {
-          max-height: 80%; /* Defina a altura máxima desejada */
-          overflow: auto; /* Ou use 'overflow-y: scroll' */
+          max-height: 80%;
+          overflow: auto;
           padding: 10%;
         }
 
+        .pagination {
+          bottom: 0;
+        }
+
       </style>
-    <!-- <head>
-      <meta charset="utf-8">
-      <title>Minha aplicação web com Firebase</title>
-    </head> -->
+
     <body>
       <!-- Biblioteca do Firebase para JavaScript -->
       <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
@@ -177,26 +297,82 @@
         <!-- Header -->
         
         <div class="header"></div>
-        <img id="home "class="logo-superior" alt="Logo do Site" src="img/logo.png"/>
+        <img id="home"  class="logo-superior" alt="Logo do Site" src="img/logo.png"/>
         <div id="rankings" class="btn-ranking">Ranking Estadual</div>
         <div class="btn-login-container">
           <div class="btn-login">Login</div>
         </div>
-        <div class="search-container">
-            <input id="search" type="text" class="search" placeholder="Digite o nome da escola ou município">
+        <div class="search-selector">
+          <div id="selector" class="selector">
+            Pesquisar por:
+            <div class="custom-dropdown">
+              <select id="dropdown">
+                <option value="opcao1">Escola</option>
+                <option value="opcao2">Região</option>
+                <option value="opcao3">Série</option>
+              </select>
+            </div>
+          </div>
         </div>
+        <div class="search-container">
+            <input id="search" type="text" class="search" placeholder="Digite sua pesquisa">
+        </div>
+
+        <div id="2019" class="btn-year-2019">2019</div>
+        <div id="2020" class="btn-year-2021">2020</div>
+        <div id="2021" class="btn-year-2022">2021 </div>
     
         <div class="table-container">
           <div id="rankingTable"></div>
         </div>
+
+        <div class="pagination" id="pagination"></div>
     
         <script>
-          // Recupere os resultados do armazenamento local ou da variável global
-          var rankingTable = localStorage.getItem("rankingTable");
-          // var rankingTable = window.rankingTable; (se estiver usando uma variável global)
-    
-          // Exiba a tabela no elemento com o ID "rankingTable"
-          document.getElementById("rankingTable").innerHTML = rankingTable;
+            // Recupere os resultados do armazenamento local ou da variável global
+            var rankingTable = localStorage.getItem("rankingTable");
+            // var rankingTable = window.rankingTable; (se estiver usando uma variável global)
+
+            // Defina o número de resultados por página
+            var resultsPerPage = 10;
+
+            // Converta a tabela em uma matriz de linhas
+            var tableRows = rankingTable.split("<tr");
+
+            // Calcule o número total de páginas
+            var totalPages = Math.ceil(tableRows.length / resultsPerPage);
+
+            // Recupere o número da página atual (se armazenado localmente)
+            var currentPage = parseInt(localStorage.getItem("currentPage")) || 1;
+
+            // Calcule o índice inicial e final dos resultados a serem exibidos
+            var startIndex = (currentPage - 1) * resultsPerPage;
+            var endIndex = startIndex + resultsPerPage;
+
+            // Exiba apenas as linhas correspondentes à página atual
+            var currentPageRows = tableRows.slice(startIndex + 1, endIndex + 1);
+
+            // Exiba a tabela no elemento com o ID "rankingTable"
+            document.getElementById("rankingTable").innerHTML = "<table><tbody><tr" + currentPageRows.join("<tr");
+
+            // Exiba a paginação
+            var pagination = "";
+            for (var i = 1; i <= totalPages; i++) {
+              if (i === currentPage) {
+                pagination += "<span>" + i + "</span>";
+              } else {
+                pagination += "<a href='#' onclick='changePage(" + i + ")'>" + i + "</a>";
+              }
+            }
+
+            document.getElementById("pagination").innerHTML = pagination;
+
+            // Função para alterar a página atual e atualizar a exibição
+            function changePage(page) {
+              currentPage = page;
+              localStorage.setItem("currentPage", currentPage);
+              location.reload();
+            }
         </script>
         
     
