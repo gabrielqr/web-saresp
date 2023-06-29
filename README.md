@@ -16,5 +16,7 @@ A ideia do projeto é democratizar e facilitar a visualização desses dados, se
 
 O estilo utilizado para a construção dessa arquitetura é baseada no Shared Repository. Como as funcionalidades do sistema são baseadas em manipulação e visualização de dados, a arquitetura consiste no conjunto de requisições da página Web ao Banco de Dados e atualização de informações ao mesmo Banco de dados pelo script acionado no GitHub Actions.
 
+O programa, da forma que foi estruturado e devido às funcionalidades desejadas, tem sua maior parte computacional centrada no Front-End e não possibilitaria a divisão internamente em maiores subcomponentes a nível de código além destes apresentados. Por exemplo, a página Web, pela similaridade de todas as funcionalidades de apresentação de dados, é estruturada como componente único, sem subdivisões, e ainda, não há necessidade de outros componentes em um Back-End. Portanto, apesar diagrama acima não parecer propriamente um diagrama a nível de componentes do programa, mas sim da arquitetura geral, ele conta com todos as subunidades presentes.
+
 Uma descrição textual dos componentes (GitHub e GitHub Actions, Firebase e Página Web) e suas responsabilidades e apresentada nos próprios blocos do diagrama.
 
