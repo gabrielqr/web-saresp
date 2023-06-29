@@ -123,3 +123,13 @@ async function performSearch() {
 
   }
 }
+
+const homeController = document.getElementById("home");
+if (homeController) {
+  homeController.addEventListener("click", async () => {
+    console.log("Botão 'home' clicado");
+
+    // Redirecione para a nova página "index.html"
+    window.location.href = "index.html";
+  });
+}

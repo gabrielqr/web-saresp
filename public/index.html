@@ -1,104 +1,214 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Dados otimizados do SARESP</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-      }
-      
-      .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 150px;
-        background-color: #0072C6;
-        color: #fff;
-        padding-bottom: 25px;
-      }
-      
-      .search {
-        width: 80%;
-        height: 40px;
-        margin-top: 20px;
-        padding: 10px;
-        font-size: 16px;
-        border: none;
-        border-radius: 20px;
-        outline: none;
-      }
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Dados otimizados do SARESP</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        
+        .header {
+          width: 100%;
+          height: 81px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: #4F8C8D;
+        }
 
-      .btn-search {
-        height: 100px;
-        padding: 0 20px;
-        border-radius: 20px;
-        font-size: 26px;
-        color: #0072C6;
-        cursor: pointer;
-        outline: none;
-        background-color: orange;
-      }
-		
-      .btn-search:hover {
-        background-color: orange;
-        color: #fff;
-      }
-      
-      .btn-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 50px;
-      }
-      
-      .btn {
-        width: 250px;
-        height: 100px;
-        margin: 0 20px;
-        background-color: #0072C6;
-        color: #fff;
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        line-height: 100px;
-        border-radius: 10px;
-        cursor: pointer;
-      }
-      
-      .btn:hover {
-        background-color: #005EA2;
-      }
-    </style>
-  <!-- <head>
-    <meta charset="utf-8">
-    <title>Minha aplicação web com Firebase</title>
-  </head> -->
-  <body>
-    <!-- Biblioteca do Firebase para JavaScript -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js" type="module"></script>
-    <!-- Biblioteca do Firebase para os serviços -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js" type="module"></script>
-    <!-- Script para a aplicação -->
-    <script src="simple_button.js" type="module"></script>
+        .logo-superior{
+          width: 116px;
+          height: 51px;
+          left: 184px;
+          top: 15px;
+          position: absolute;
+        }
 
-    <div class="header">
-      <h1>Dados otimizados do SARESP</h1>
-      <input type="text" class="search" placeholder="Pesquisar...">
-      <button id="search" class="btn-search">Buscar</button>
-    </div>
+        .logo-superior:hover {
+          background-color:#57CC99;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .logo-inferior{
+          width: 91px;
+          height: 40px;
+          left: 0px;
+          top: 0px;
+        }
+
+        .mini-logo{
+          width: 24px;
+          height: 24px;
+          top: 47px;
+          position: absolute;
+        }
+        
+        .search {
+          width: 360px;
+          height: 42px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: #F6F6F6;
+          border-radius: 80px;
+          border-left: 0.50px #1B4965 solid;
+          border-top: 0.50px #1B4965 solid;
+          border-right: 0.50px #1B4965 solid;
+          border-bottom: 0.50px #1B4965 solid;
+          font-size: 18px;
+          font-weight: bold;
+          font-family: Red Hat Display;
+          word-wrap: break-word;
+          outline: none;
+          text-align: center;
+        }
+
+        .search-container{
+          width: 360px;
+          height: 42px;
+          left: 38%;
+          top: 19px;
+          position: absolute;
+        }
+  
+        .btn-ranking {
+          width: 160px;
+          left: 950px;
+          top: 4%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+        }
+      
+        .btn-ranking:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .btn-login {
+          width: 110px;
+          left: 0px;
+          top: 10%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+            
+        }
+      
+        .btn-login:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+        
+        .btn-login-container {
+          width: 100px;
+          height: 42px;
+          left: 1156px;
+          top: 21px;
+          position: absolute;
+        }
+        
+        .btn {
+          width: 250px;
+          height: 100px;
+          margin: 0 20px;
+          background-color: #0072C6;
+          color: #fff;
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 100px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+        
+        .btn:hover {
+          background-color: #005EA2;
+        }
+      </style>
+    <!-- <head>
+      <meta charset="utf-8">
+      <title>Minha aplicação web com Firebase</title>
+    </head> -->
+    <body>
+      <!-- Biblioteca do Firebase para JavaScript -->
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js" type="module"></script>
+      <!-- Biblioteca do Firebase para os serviços -->
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js" type="module"></script>
+      <!-- Script para a aplicação -->
+      <script src="simple_button.js" type="module"></script>
+
+      <!-- body -->
+
+      <div style="width: 100%; height: 100%; background: #E5E5E5; justify-content: center; align-items: center; display: inline-flex">
     
-    <div class="btn-container">
-      <button id="rankings" class="btn">Rankings</button>
-      <button id="sobreNos" class="btn">Sobre nós</button>
-    </div>
-
-  </body>
-</html>
+        <!-- Quadros do meio da tela -->
+    
+        <div style="width: 100%; height: 937px; left: 0px; top: 0px; position: absolute">
+          <img style="width: 100%; height: 937px; left: 0px; top: 0px; position: absolute; box-shadow: 15px 15px 15px; filter: blur(15px)" src="https://via.placeholder.com/1440x937" />
+          <div style="width: 96%; height: 731.21px; left: 2%; top: 57.85px; position: absolute; background: linear-gradient(0deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.68) 100%), linear-gradient(180deg, rgba(56, 163, 165, 0) 0%, rgba(199, 249, 204, 0.20) 100%)"></div>
+        </div>  
+        <div style="width: 80%; height: 88px; left: 13%; top: 237px; position: absolute; color: #101010; font-size: 30px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">Para começar clique no ranking estadual ou pesquise o nome de uma escola ou região</div>
+        <div style="top: 155px; position: absolute; color: #101010; font-size: 48px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">Bem vindo ao Monitor do Saresp</div>
+        <div style="width: 40%; height: 310px; left: 8%; top: 350px; position: absolute; background: rgba(255, 255, 255, 0.62)"></div>
+        <div style="width: 30%; left: 13%; top: 364px; position: absolute; color: #101010; font-size: 32px; font-family: Red Hat Display; font-weight: 300; word-wrap: break-word">O que é Saresp?</div>
+        <div style="width: 30%; left: 13%; top: 421px; position: absolute; text-align: justify; color: #101010; font-size: 14px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">O SARESP (Sistema de Avaliação do Rendimento Escolar do Estado de São Paulo) é uma prova aplicada anualmente, desde 1996, no estado de São Paulo. Ela envolve alunos do 3º, 5º, 7º e 9º ano do Ensino Fundamental, e 3º ano do Ensino Médio, das escolas estaduais e, por convênio, escolas municipais e particulares, apesar destas não terem seus dados disponíveis livremente. A prova tem como objetivo principal obter indicadores educacionais para melhor orientar políticas públicas e projetos, além de gerar indicadores como o IDESP (Índice de Desenvolvimento da Educação do Estado de São Paulo), que é um indicador da qualidade da escola e do fluxo de alunos. </div>
+        <div style="width: 40%; height: 310px; left: 52%; top: 350px; position: absolute; background: rgba(255, 255, 255, 0.62)"></div>
+        <div style="width: 419px; left: 771px; top: 368px; position: absolute; color: #101010; font-size: 32px; font-family: Red Hat Display; font-weight: 300; word-wrap: break-word">Sobre nós</div>
+        
+        <!-- Header -->
+        
+        
+          <div class="header"></div>
+          <img id="home" class="logo-superior" alt="Logo do Site" src="img/logo.png"/>
+          <div id="rankings" class="btn-ranking">Ranking Estadual</div>
+          <div class="btn-login-container">
+            <div class="btn-login">Login</div>
+          </div>
+          <div class="search-container">
+              <input id="search" type="text" class="search" placeholder="Digite o nome da escola ou município">
+          </div>
+        
+    
+        <!-- Footer -->
+        
+        <div style="width: 416px; left: 774px; top: 425px; position: absolute; text-align: justify; color: #101010; font-size: 14px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">Formado por um grupo de alunos da Unicamp, nosso objetivo com este projeto é poder coletar os dados e, por uma nova perspectiva, apresentar os resultados da prova com uma outra otimização, mirando uma interface mais manipulável e permitindo um ranqueamento entre os mais variados campos de pesquisa como escolas, municípios, regiões, áreas do conhecimento e entre outros filtros  da aplicação.  O SARESP é uma ferramenta poderosa de análise estudantil do estado de São Paulo, e uma vez que seus dados possam ser analisados e acessados de forma mais prática, possibilita um novo olhar para o quadro educacional paulista e uma maior transparência para quem procura informações escolares.</div>
+        <div style="width: 100%; height: 118px; left: 0px; top: 819px; position: absolute; background: white">
+          <div style="width: 100%; height: 118px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(59.50, 59.50, 59.50, 0.51) 100%)"></div>
+          <div style="width: 229px; left: 10%; top: 49px; position: absolute; color: black; font-size: 14px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">© 2023, Todos os direitos reservados</div>
+          <div style="width: 91px; height: 40px; left: 46.5%; top: 39px; position: absolute">
+            <img class="logo-inferior" alt="Logo do Site" src="img/logo.png"/>
+          </div>       
+          <img class="mini-logo" style ="left: 1132px" src="img/email.png" />
+          <img class="mini-logo" style ="left: 1166px" src="img/facebook.png" />
+          <img class="mini-logo" style ="left: 1200px" src="img/instagram.png" />
+          <img class="mini-logo" style ="left: 1234px" src="img/twitter.png" />
+        </div>
+      </div>
+  
+    </body>
+  </html>

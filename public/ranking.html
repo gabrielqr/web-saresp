@@ -1,62 +1,219 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Ranking das Escolas</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-      }
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Dados otimizados do SARESP</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        
+        .header {
+          width: 100%;
+          height: 81px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: #4F8C8D;
+        }
+
+        .logo-superior{
+          width: 116px;
+          height: 51px;
+          left: 184px;
+          top: 15px;
+          position: absolute;
+        }
+
+        .logo-superior:hover {
+          background-color:#57CC99;
+          color: #fff;
+          cursor: pointer;
+        }
+
+
+        .logo-inferior{
+          width: 91px;
+          height: 40px;
+          left: 0px;
+          top: 0px;
+        }
+
+        .mini-logo{
+          width: 24px;
+          height: 24px;
+          top: 47px;
+          position: absolute;
+        }
+        
+        .search {
+          width: 360px;
+          height: 42px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: #F6F6F6;
+          border-radius: 80px;
+          border-left: 0.50px #1B4965 solid;
+          border-top: 0.50px #1B4965 solid;
+          border-right: 0.50px #1B4965 solid;
+          border-bottom: 0.50px #1B4965 solid;
+          font-size: 18px;
+          font-weight: bold;
+          font-family: Red Hat Display;
+          word-wrap: break-word;
+          outline: none;
+          text-align: center;
+        }
+
+        .search-container{
+          width: 360px;
+          height: 42px;
+          left: 38%;
+          top: 19px;
+          position: absolute;
+        }
+  
+        .btn-ranking {
+          width: 160px;
+          left: 950px;
+          top: 4%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+        }
       
-      .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 150px;
-        background-color: #0072C6;
-        color: #fff;
-        padding-bottom: 25px;
-      }
+        .btn-ranking:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .btn-login {
+          width: 110px;
+          left: 0px;
+          top: 10%;
+          position: absolute;
+          color: white;
+          font-size: 20px;
+          font-family: Red Hat Display;
+          background: #57CC99;
+          border-radius: 15px;
+          font-weight: 500;
+          word-wrap: break-word;
+          padding: 5px;
+          text-align: center;
+            
+        }
       
-      .table-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Biblioteca do Firebase para JavaScript -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js" type="module"></script>
-    <!-- Biblioteca do Firebase para os serviços -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js" type="module"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js" type="module"></script>
-    <!-- Script para a aplicação -->
-    <script src="simple_button.js" type="module"></script>
+        .btn-login:hover {
+          background-color: gray;
+          color: #fff;
+          cursor: pointer;
+        }
+        
+        .btn-login-container {
+          width: 100px;
+          height: 42px;
+          left: 1156px;
+          top: 21px;
+          position: absolute;
+        }
+        
+        .btn {
+          width: 250px;
+          height: 100px;
+          margin: 0 20px;
+          background-color: #0072C6;
+          color: #fff;
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 100px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+        
+        .btn:hover {
+          background-color: #005EA2;
+        }
 
-    <div class="header">
-      <h1>RANKING DAS ESCOLAS</h1>
-    </div>
+        .table-container {
+          max-height: 80%; /* Defina a altura máxima desejada */
+          overflow: auto; /* Ou use 'overflow-y: scroll' */
+          padding: 10%;
+        }
+
+      </style>
+    <!-- <head>
+      <meta charset="utf-8">
+      <title>Minha aplicação web com Firebase</title>
+    </head> -->
+    <body>
+      <!-- Biblioteca do Firebase para JavaScript -->
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js" type="module"></script>
+      <!-- Biblioteca do Firebase para os serviços -->
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js" type="module"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js" type="module"></script>
+      <!-- Script para a aplicação -->
+      <script src="simple_button.js" type="module"></script>
+
+      <!-- body -->
+
+      <div style="width: 100%; height: 100%; background: #E5E5E5; justify-content: center; align-items: center; display: inline-flex">
+
+        <!-- Header -->
+        
+        <div class="header"></div>
+        <img id="home "class="logo-superior" alt="Logo do Site" src="img/logo.png"/>
+        <div id="rankings" class="btn-ranking">Ranking Estadual</div>
+        <div class="btn-login-container">
+          <div class="btn-login">Login</div>
+        </div>
+        <div class="search-container">
+            <input id="search" type="text" class="search" placeholder="Digite o nome da escola ou município">
+        </div>
     
-    <div class="table-container">
-      <div id="rankingTable"></div>
-    </div>
-
-    <script>
-      // Recupere os resultados do armazenamento local ou da variável global
-      var rankingTable = localStorage.getItem("rankingTable");
-      // var rankingTable = window.rankingTable; (se estiver usando uma variável global)
-
-      // Exiba a tabela no elemento com o ID "rankingTable"
-      document.getElementById("rankingTable").innerHTML = rankingTable;
-    </script>
+        <div class="table-container">
+          <div id="rankingTable"></div>
+        </div>
     
-  </body>
-</html>
+        <script>
+          // Recupere os resultados do armazenamento local ou da variável global
+          var rankingTable = localStorage.getItem("rankingTable");
+          // var rankingTable = window.rankingTable; (se estiver usando uma variável global)
+    
+          // Exiba a tabela no elemento com o ID "rankingTable"
+          document.getElementById("rankingTable").innerHTML = rankingTable;
+        </script>
+        
+    
+        <!-- Footer -->
+        
+        <div style="width: 100%; height: 118px; position: fixed; bottom: 0; background: white">
+          <div style="width: 100%; height: 118px; left: 0px; top: 0px; position: absolute; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(59.50, 59.50, 59.50, 0.51) 100%)"></div>
+          <div style="width: 229px; left: 10%; top: 49px; position: absolute; color: black; font-size: 14px; font-family: Red Hat Display; font-weight: 400; word-wrap: break-word">© 2023, Todos os direitos reservados</div>
+          <div style="width: 91px; height: 40px; left: 46.5%; top: 39px; position: absolute">
+            <img class="logo-inferior" alt="Logo do Site" src="img/logo.png"/>
+          </div>       
+          <img class="mini-logo" style ="left: 1132px" src="img/email.png" />
+          <img class="mini-logo" style ="left: 1166px" src="img/facebook.png" />
+          <img class="mini-logo" style ="left: 1200px" src="img/instagram.png" />
+          <img class="mini-logo" style ="left: 1234px" src="img/twitter.png" />
+        </div>        
+      </div>
+  
+    </body>
+  </html>
