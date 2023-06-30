@@ -1,13 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-app.js";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  orderBy,
-  query,
-  where,
-  or,
-} from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
+import { FirebaseAdapter } from "./firebase_adapter.js";
 
 // const firebaseConfig = {
 //   apiKey: "AIzaSyCy5Pa_k7SaCooNjkLJWG_c0bg07pHS8FQ",
@@ -29,37 +20,7 @@ const firebaseConfig = {
 
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-async function getSchoolsRanked() {
-  const schoolsRef = collection(db, "Escolas");
-  const schoolsRankingQuery = query(schoolsRef, orderBy("medprof", "desc"));
-  return await getDocs(schoolsRankingQuery);
-}
-
-async function getSchoolsByYear2019() {
-  const schoolsRef = collection(db, "Escolas");
-  const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2019));
-  return await getDocs(schoolsRankingQuery);
-}
-
-async function getSchoolsByYear2020() {
-  const schoolsRef = collection(db, "Escolas");
-  const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2020));
-  return await getDocs(schoolsRankingQuery);
-}
-
-async function getSchoolsByYear2021() {
-  const schoolsRef = collection(db, "Escolas");
-  const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2021));
-  return await getDocs(schoolsRankingQuery);
-}
-
-async function getSchoolsBySearchTerm(tipo, searchTerm) {
-  const schoolsRef = collection(db, "Escolas");
-  const schoolsSearchQuery = query(schoolsRef, where(tipo, "==", searchTerm));
-  return await getDocs(schoolsSearchQuery);
-}
+const adapter = new FirebaseAdapter(firebaseConfig);
 
 function createCell(row, content, cellTag = "td") {
   let cell = document.createElement(cellTag);
@@ -108,7 +69,7 @@ const rankingController = document.getElementById("rankings");
 if (rankingController) {
   rankingController.addEventListener("click", async () => {
     console.log("Botão 'Rankings' clicado");
-    let schoolsRanking = await getSchoolsRanked();
+    let schoolsRanking = await adapter.getSchoolsRanked();
     
     // Crie a tabela
     let table = createTable(schoolsRanking);
@@ -125,7 +86,7 @@ const yearController2019 = document.getElementById("2019");
 if (yearController2019) {
   yearController2019.addEventListener("click", async () => {
     console.log("Botão '2019' clicado");
-    let schoolsYear= await getSchoolsByYear2019();
+    let schoolsYear= await adapter.getSchoolsByYear(2019);
     
     // Crie a tabela
     let table = createTable(schoolsYear);
@@ -142,7 +103,7 @@ const yearController2020 = document.getElementById("2020");
 if (yearController2020) {
   yearController2020.addEventListener("click", async () => {
     console.log("Botão '2020' clicado");
-    let schoolsYear= await getSchoolsByYear2020();
+    let schoolsYear= await adapter.getSchoolsByYear(2020);
     
     // Crie a tabela
     let table = createTable(schoolsYear);
@@ -159,7 +120,7 @@ const yearController2021 = document.getElementById("2021");
 if (yearController2021) {
   yearController2021.addEventListener("click", async () => {
     console.log("Botão '2021' clicado");
-    let schoolsYear= await getSchoolsByYear2021();
+    let schoolsYear= await adapter.getSchoolsByYear(2021);
     
     // Crie a tabela
     let table = createTable(schoolsYear);
@@ -201,18 +162,18 @@ async function performSearch() {
       if (selectedValue === 'opcao1') {
         // Opção 1 selecionada (Escola)
         const type = "NOMESC";
-        schools = await getSchoolsBySearchTerm(type, searchTerm);
+        schools = await adapter.getSchoolsBySearchTerm(type, searchTerm);
         
       } else if (selectedValue === 'opcao2') {
         // Opção 2 selecionada (Região)
         const type = "CodRMet";
         const convertTerm = parseInt(searchTerm, 10);
-        schools = await getSchoolsBySearchTerm(type, convertTerm);
+        schools = await adapter.getSchoolsBySearchTerm(type, searchTerm);
         
       } else if (selectedValue === 'opcao3') {
         
         const type = "SERIE_ANO";
-        schools = await getSchoolsBySearchTerm(type,searchTerm);
+        schools = await adapter.getSchoolsBySearchTerm(type, searchTerm);
         
       }
     
