@@ -2,48 +2,65 @@ import { expect } from 'chai';
 import { use } from 'chai';
 import chaiDom from 'chai-dom';
 import { JSDOM } from 'jsdom';
-use(chaiDom)
 
-describe('Ranking.html', () => {
-  let dom;
-  let document;
+use(chaiDom);
 
-  beforeEach(() => {
-    dom = new JSDOM(`<!DOCTYPE html><table>
-          <tr>
-            <th>Nome</th>
-            <th>Série/Ano</th>
-            <th>Média</th>
-          </tr>
-          <tr>
-            <td>AYRES DE MOURA PROFESSOR</td>
-            <td>9º Ano EF</td>
-            <td>279.8</td>
-          </tr>
-          <!-- unknown number of rows with unknown data -->
-        </table>`);
-    document = dom.window.document;
-  });
+describe("ranking.html", () => {
+  describe('Testes automatizados para o ranking - Critério: Classes de Equivalência', () => {
+    let dom;
 
-  describe("Test ranking", () => {
-    it('should have a table with three headers', () => {
-      const headers = document.querySelectorAll('th');
-      expect(headers).to.have.length(3);
-      expect(headers[0]).to.have.text('Nome');
-      expect(headers[1]).to.have.text('Série/Ano');
-      expect(headers[2]).to.have.text('Média');
+    before(() => {
+      dom = new JSDOM(`<!DOCTYPE html><table>
+        <tr>
+          <th>Nome</th>
+          <th>Série/Ano</th>
+          <th>Média</th>
+        </tr>
+        <tr>
+          <td>AYRES DE MOURA PROFESSOR</td>
+          <td>9º Ano EF</td>
+          <td>279.8</td>
+        </tr>
+        <!-- unknown number of rows with unknown data -->
+      </table>`);
+
+      global.document = dom.window.document;
+      global.window = dom.window;
     });
 
-    it('should have a table with at least two row of data', () => {
-      const rows = document.querySelectorAll('tr');
-      expect(rows.length).to.be.at.least(2); // header included
+    it('Deve exibir a tabela corretamente', () => {
+      const table = document.querySelector('table');
+      expect(table).to.exist;
+    })
+
+    it('Deve ter os cabeçalhos corretos', () => {
+      const table = document.querySelector('table');
+      const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent);
+      expect(headers).to.deep.equal(['Nome', 'Série/Ano', 'Média']);
     });
 
-    it('each row should have three cells', () => {
-      const rows = document.querySelectorAll('tr');
-      for (let i = 1; i < rows.length; i++) {
-        expect(rows[i].children).to.have.length(3);
-      }
+    it('Deve ter os dados corretos', () => {
+      const table = document.querySelector('table');
+      const rows = Array.from(table.querySelectorAll('tr')).slice(1); // Ignorar a primeira linha (cabeçalhos)
+      expect(rows.length).to.be.above(0); // Verificar se existem linhas de dados
+
+      rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td')).map(td => td.textContent);
+        expect(cells.length).to.equal(3); // Verificar se cada linha tem 3 células
+
+      });
+    });
+
+    it('Deve ter os dados das células corretos', () => {
+      const table = document.querySelector('table');
+      const rows = Array.from(table.querySelectorAll('tr')).slice(1);
+      rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td')).map(td => td.textContent);
+        expect(cells.length).to.equal(3); // Verificar se cada linha tem 3 células
+        expect(cells[0]).to.be.a('string').and.not.to.be.empty; // Verificar se o nome não está vazio
+        expect(cells[1]).to.be.a('string').and.not.to.be.empty; // Verificar se a série/ano não está vazio
+        expect(cells[2]).to.satisfy(value => !isNaN(parseFloat(value))); // Verificar se a média é um número válido
+      });
     });
   });
 });
