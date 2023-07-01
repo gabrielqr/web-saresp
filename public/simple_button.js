@@ -1,62 +1,32 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-app.js";
+import { schoolsRef } from "./configuration.js";
 import {
-  collection,
   getDocs,
-  getFirestore,
   orderBy,
   query,
   where,
-  or,
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-firestore.js";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCy5Pa_k7SaCooNjkLJWG_c0bg07pHS8FQ",
-//   authDomain: "saresp-web.firebaseapp.com",
-//   projectId: "saresp-web",
-//   storageBucket: "saresp-web.appspot.com",
-//   messagingSenderId: "1045309326364",
-//   appId: "1:1045309326364:web:b9ececf619ff421fbd8bd9",
-// };
-
-const firebaseConfig = {
-
-  apiKey: "AIzaSyASN_bqZl-hyUdE2B07DRJd4VbenaPQlYA",
-  authDomain: "engsoft-426.firebaseapp.com",
-  projectId: "engsoft-426",
-  storageBucket: "engsoft-426.appspot.com",
-  messagingSenderId: "469850250369",
-  appId: "1:469850250369:web:fd46e18dcaa55340c9c180"
-
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 async function getSchoolsRanked() {
-  const schoolsRef = collection(db, "Escolas");
   const schoolsRankingQuery = query(schoolsRef, orderBy("medprof", "desc"));
   return await getDocs(schoolsRankingQuery);
 }
 
 async function getSchoolsByYear2019() {
-  const schoolsRef = collection(db, "Escolas");
   const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2019));
   return await getDocs(schoolsRankingQuery);
 }
 
 async function getSchoolsByYear2020() {
-  const schoolsRef = collection(db, "Escolas");
   const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2020));
   return await getDocs(schoolsRankingQuery);
 }
 
 async function getSchoolsByYear2021() {
-  const schoolsRef = collection(db, "Escolas");
   const schoolsRankingQuery = query(schoolsRef, where("ano", "==", 2021));
   return await getDocs(schoolsRankingQuery);
 }
 
 async function getSchoolsBySearchTerm(tipo, searchTerm) {
-  const schoolsRef = collection(db, "Escolas");
   const schoolsSearchQuery = query(schoolsRef, where(tipo, "==", searchTerm));
   return await getDocs(schoolsSearchQuery);
 }
