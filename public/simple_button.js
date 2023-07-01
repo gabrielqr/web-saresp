@@ -1,70 +1,10 @@
+import { TableCreator } from "./create_table.js";
 import { FirebaseAdapter } from "./firebase_adapter.js";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCy5Pa_k7SaCooNjkLJWG_c0bg07pHS8FQ",
-//   authDomain: "saresp-web.firebaseapp.com",
-//   projectId: "saresp-web",
-//   storageBucket: "saresp-web.appspot.com",
-//   messagingSenderId: "1045309326364",
-//   appId: "1:1045309326364:web:b9ececf619ff421fbd8bd9",
-// };
+const adapter = new FirebaseAdapter;
+const tableCreator = new TableCreator;
 
-const firebaseConfig = {
-
-  apiKey: "AIzaSyASN_bqZl-hyUdE2B07DRJd4VbenaPQlYA",
-  authDomain: "engsoft-426.firebaseapp.com",
-  projectId: "engsoft-426",
-  storageBucket: "engsoft-426.appspot.com",
-  messagingSenderId: "469850250369",
-  appId: "1:469850250369:web:fd46e18dcaa55340c9c180"
-
-};
-
-const adapter = new FirebaseAdapter(firebaseConfig);
-
-function createCell(row, content, cellTag = "td") {
-  let cell = document.createElement(cellTag);
-  cell.textContent = content;
-  row.appendChild(cell);
-}
-
-function createTableHeader(table, headers) {
-  let tableHead = document.createElement("thead");
-
-  let headRow = document.createElement("tr");
-  headers.forEach((header) => {
-    createCell(headRow, header, "th");
-  });
-  tableHead.appendChild(headRow);
-
-  table.appendChild(tableHead);
-}
-
-function createTable(tableData) {
-  var table = document.createElement("table");
-
-  createTableHeader(table, ["Nome", "Ano", "Região", "Série/Ano", "Média"]);
-
-  var tableBody = document.createElement("tbody");
-  tableData.forEach((dataRow) => {
-    var row = document.createElement("tr");
-
-    var data = dataRow.data();
-
-    createCell(row, data["NOMESC"]);
-    createCell(row, data["ano"]);
-    createCell(row, data["CodRMet"]);
-    createCell(row, data["SERIE_ANO"]);
-    createCell(row, data["medprof"]);
-
-    tableBody.appendChild(row);
-  });
-
-  table.appendChild(tableBody);
-
-  return table;
-}
-
+//ranking escolar
 const rankingController = document.getElementById("rankings");
 if (rankingController) {
   rankingController.addEventListener("click", async () => {
@@ -72,7 +12,7 @@ if (rankingController) {
     let schoolsRanking = await adapter.getSchoolsRanked();
     
     // Crie a tabela
-    let table = createTable(schoolsRanking);
+    let table = await tableCreator.createTable(schoolsRanking);
   
     // Armazene os resultados no armazenamento local ou em uma variável global
     localStorage.setItem("rankingTable", table.outerHTML);
@@ -82,57 +22,31 @@ if (rankingController) {
   });
 }
 
-const yearController2019 = document.getElementById("2019");
-if (yearController2019) {
-  yearController2019.addEventListener("click", async () => {
-    console.log("Botão '2019' clicado");
-    let schoolsYear= await adapter.getSchoolsByYear(2019);
-    
-    // Crie a tabela
-    let table = createTable(schoolsYear);
-  
-    // Armazene os resultados no armazenamento local ou em uma variável global
-    localStorage.setItem("rankingTable", table.outerHTML);
-    
-    // Redirecione para a nova página "ranking.html"
-    window.location.href = "ranking.html";
-  });
+//ranking por ano
+function createYearController(year) {
+  const yearController = document.getElementById(year.toString());
+  if (yearController) {
+    yearController.addEventListener("click", async () => {
+      console.log(`Botão '${year}' clicado`);
+      let schoolsYear = await adapter.getSchoolsByYear(year);
+
+      // Crie a tabela
+      let table = tableCreator.createTable(schoolsYear);
+
+      // Armazene os resultados no armazenamento local ou em uma variável global
+      localStorage.setItem("rankingTable", table.outerHTML);
+
+      // Redirecione para a nova página "ranking.html"
+      window.location.href = "ranking.html";
+    });
+  }
 }
 
-const yearController2020 = document.getElementById("2020");
-if (yearController2020) {
-  yearController2020.addEventListener("click", async () => {
-    console.log("Botão '2020' clicado");
-    let schoolsYear= await adapter.getSchoolsByYear(2020);
-    
-    // Crie a tabela
-    let table = createTable(schoolsYear);
-  
-    // Armazene os resultados no armazenamento local ou em uma variável global
-    localStorage.setItem("rankingTable", table.outerHTML);
-    
-    // Redirecione para a nova página "ranking.html"
-    window.location.href = "ranking.html";
-  });
-}
+createYearController(2019);
+createYearController(2020);
+createYearController(2021);
 
-const yearController2021 = document.getElementById("2021");
-if (yearController2021) {
-  yearController2021.addEventListener("click", async () => {
-    console.log("Botão '2021' clicado");
-    let schoolsYear= await adapter.getSchoolsByYear(2021);
-    
-    // Crie a tabela
-    let table = createTable(schoolsYear);
-  
-    // Armazene os resultados no armazenamento local ou em uma variável global
-    localStorage.setItem("rankingTable", table.outerHTML);
-    
-    // Redirecione para a nova página "ranking.html"
-    window.location.href = "ranking.html";
-  });
-}
-
+//campo da barra de pesquisa
 const searchController = document.getElementById("search");
 const searchInput = document.querySelector(".search");
 
@@ -168,7 +82,7 @@ async function performSearch() {
         // Opção 2 selecionada (Região)
         const type = "CodRMet";
         const convertTerm = parseInt(searchTerm, 10);
-        schools = await adapter.getSchoolsBySearchTerm(type, searchTerm);
+        schools = await adapter.getSchoolsBySearchTerm(type, convertTerm);
         
       } else if (selectedValue === 'opcao3') {
         
@@ -177,10 +91,8 @@ async function performSearch() {
         
       }
     
-    let table = createTable(schools);
+    let table = await tableCreator.createTable(schools);
 
-    console.log(table);
-  
     // Armazene os resultados no armazenamento local ou em uma variável global
     localStorage.setItem("searchingTable", table.outerHTML);
     
@@ -188,24 +100,4 @@ async function performSearch() {
     window.location.href = "searching.html";
 
   }
-}
-
-const homeController = document.getElementById("home");
-if (homeController) {
-  homeController.addEventListener("click", async () => {
-    console.log("Botão 'home' clicado");
-
-    // Redirecione para a nova página "index.html"
-    window.location.href = "index.html";
-  });
-}
-
-const loginController = document.getElementById("login");
-if (loginController) {
-  loginController.addEventListener("click", async () => {
-    console.log("Botão 'login' clicado");
-
-    // Redirecione para a nova página "index.html"
-    window.location.href = "login.html";
-  });
 }
